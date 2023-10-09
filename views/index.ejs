@@ -27,16 +27,16 @@
                 </tr>
             </thead>
             <tbody>
-                <% shortUrls.forEach(shortUrl=> { %>
+                <% urls.forEach(url=> { %>
                     <tr>
-                        <td><a href="<%= shortUrl.original_url %>">
-                                <%= shortUrl.original_url %>
+                        <td><a href="<%= url.original_url %>">
+                                <%= url.original_url %>
                             </a></td>
-                        <td><a href="<%= shortUrl.short_url %>">
-                                <%= shortUrl.short_url %>
+                        <td><a href="<%= url.short_url %>">
+                                <%= url.short_url %>
                             </a></td>
                         <td>
-                            <%= shortUrl.clicks %>
+                            <%= url.clicks %>
                         </td>
                     </tr>
                     <% }) %>

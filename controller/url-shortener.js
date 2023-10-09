@@ -3,7 +3,6 @@ const path = require('path');
 const urlShortenerService = require('../service/url-shortener')
 
 class UrlShortenerController {
-
     async createShortUrl(req, res) {
         try {
             await urlShortenerService.createShortUrl(req.body.originalUrl);
@@ -29,11 +28,11 @@ class UrlShortenerController {
         };
     };
 
-    async getShortUrls(req, res) {
+    async getUrls(req, res) {
         try {
-            const shortUrls = await urlShortenerService.getShortUrls();
-            shortUrls.forEach(url => url.short_url = `${req.protocol}://${path.join(req.headers.host, url.short_url)}`);
-            res.render('index', { shortUrls: shortUrls });
+            const urls = await urlShortenerService.getUrls();
+            urls.forEach(url => url.short_url = `${req.protocol}://${path.join(req.headers.host, url.short_url)}`);
+            res.render('index', { urls: urls });
         } catch (err) {
             console.error(err);
         };

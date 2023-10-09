@@ -5,6 +5,6 @@ const urlShortenerController = require('../controller/url-shortener');
 const router = express.Router();
 router.post('/', urlShortenerController.createShortUrl);
 router.get('/:token', urlShortenerController.loadShortUrl);
-router.get('/', urlShortenerController.getShortUrls);
+router.get('/', urlShortenerController.getUrls);
 
 module.exports = router;

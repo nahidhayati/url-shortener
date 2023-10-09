@@ -2,14 +2,12 @@ const db = require('../db/db')
 
 class UrlShortenerDAO {
     async createShortUrl(originalUrl, shortUrl, clicks) {
-        const [id] = await db('url')
+        await db('url')
             .insert({
                 original_url: originalUrl,
                 short_url: shortUrl,
                 clicks: clicks
-            })
-            .returning('id');
-        return id;
+            });
     };
 
     async update(token, clicks) {
@@ -25,10 +23,9 @@ class UrlShortenerDAO {
         return url
     };
 
-    async getShortUrls() {
-        const shortUrls = await db('url');
-        return shortUrls;
-    }
+    async getUrls() {
+        return await db('url');
+    };
 };
 
 module.exports = new UrlShortenerDAO();

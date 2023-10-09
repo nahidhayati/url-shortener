@@ -14,8 +14,8 @@ class UrlShortenerService {
         return urlShortenerDAO.update(token, clicks + 1)
     }
 
-    getShortUrls() {
-        return urlShortenerDAO.getShortUrls();
+    getUrls() {
+        return urlShortenerDAO.getUrls();
     };
 };
 
