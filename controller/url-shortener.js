@@ -13,6 +13,7 @@ class UrlShortenerController {
     async getShortUrls(req, res) {
         try {
             const shortUrls = await urlShortenerService.getShortUrls()
+            shortUrls.forEach(url => url.short_url = req.headers.host + url.short_url)
             res.render('index', { shortUrls: shortUrls })
         } catch (err) {
             console.error(err);

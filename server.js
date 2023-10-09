@@ -9,10 +9,6 @@ app.get('/ping', (req, res) => {
     res.send('pong')
 })
 
-// app.get('/', (req, res) => {
-//     res.render('index')
-// })
-
 app.use(router);
 
 const port = process.env.PORT || 8080
