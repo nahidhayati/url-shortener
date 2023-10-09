@@ -12,8 +12,21 @@ class UrlShortenerDAO {
         return id;
     };
 
+    async update(token, clicks) {
+        await db('url')
+            .where({ short_url: token })
+            .update({ clicks: clicks });
+    };
+
+    async getUrl(token) {
+        const url = await db('url')
+            .where({ short_url: token })
+            .first();
+        return url
+    };
+
     async getShortUrls() {
-        const shortUrls = await db('url')
+        const shortUrls = await db('url');
         return shortUrls;
     }
 };
