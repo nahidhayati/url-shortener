@@ -7,7 +7,16 @@ class UrlShortenerController {
             res.redirect('/');
         } catch (err) {
             console.error(err);
-        }
+        };
+    };
+
+    async getShortUrls(req, res) {
+        try {
+            const shortUrls = await urlShortenerService.getShortUrls()
+            res.render('index', { shortUrls: shortUrls })
+        } catch (err) {
+            console.error(err);
+        };
     };
 };
 

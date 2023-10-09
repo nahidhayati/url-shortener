@@ -11,6 +11,11 @@ class UrlShortenerDAO {
             .returning('id');
         return id;
     };
+
+    async getShortUrls() {
+        const shortUrls = await db('url')
+        return shortUrls;
+    }
 };
 
 module.exports = new UrlShortenerDAO();

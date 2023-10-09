@@ -9,9 +9,9 @@ app.get('/ping', (req, res) => {
     res.send('pong')
 })
 
-app.get('/', (req, res) => {
-    res.render('index')
-})
+// app.get('/', (req, res) => {
+//     res.render('index')
+// })
 
 app.use(router);
 
