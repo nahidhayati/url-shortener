@@ -1,25 +1,19 @@
-const urlShortenerDAO = require('../dao/url-shortener');
-const shortId = require('shortid');
+import * as urlShortenerDAO from '../dao/url-shortener.js';
+import shortId from 'shortid';
 
-const createShortUrl = (originalUrl) => {
+export const createShortUrl = (originalUrl) => {
   return urlShortenerDAO.createShortUrl(originalUrl, shortId.generate(), 0);
 };
 
-const getUrl = (token) => {
+export const getUrl = (token) => {
   return urlShortenerDAO.getUrl(token);
 };
 
-const update = (token, clicks) => {
+export const update = (token, clicks) => {
   return urlShortenerDAO.update(token, clicks + 1);
 };
 
-const getUrls = () => {
+export const getUrls = () => {
   return urlShortenerDAO.getUrls();
 };
 
-module.exports = {
-  createShortUrl,
-  getUrl,
-  update,
-  getUrls,
-};

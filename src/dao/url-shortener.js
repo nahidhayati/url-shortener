@@ -1,6 +1,6 @@
-const db = require('../db/db');
+import db from '../db/db.js';
 
-const createShortUrl = (originalUrl, shortUrl, clicks) => {
+export const createShortUrl = (originalUrl, shortUrl, clicks) => {
   return db('url').insert({
     original_url: originalUrl,
     short_url: shortUrl,
@@ -8,21 +8,14 @@ const createShortUrl = (originalUrl, shortUrl, clicks) => {
   });
 };
 
-const update = (token, clicks) => {
+export const update = (token, clicks) => {
   return db('url').where({ short_url: token }).update({ clicks: clicks });
 };
 
-const getUrl = (token) => {
+export const getUrl = (token) => {
   return db('url').where({ short_url: token }).first();
 };
 
-const getUrls = () => {
+export const getUrls = () => {
   return db('url');
-};
-
-module.exports = {
-  createShortUrl,
-  update,
-  getUrl,
-  getUrls,
 };

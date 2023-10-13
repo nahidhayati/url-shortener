@@ -1,9 +1,10 @@
-const express = require('express');
-const urlShortenerController = require('../controller/url-shortener');
+import express from 'express';
+import * as urlShortenerController from '../controller/url-shortener.js';
 
 const router = express.Router();
 router.post('/', urlShortenerController.createShortUrl);
 router.get('/:token', urlShortenerController.loadShortUrl);
 router.get('/', urlShortenerController.getUrls);
 
-module.exports = router;
+
+export default router

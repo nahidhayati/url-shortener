@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "migrate": "knex migrate:latest --knexfile db/knexfile.js",
     "start": "nodemon server.js",

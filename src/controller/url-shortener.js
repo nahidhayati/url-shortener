@@ -1,8 +1,7 @@
-const e = require('express');
-const path = require('path');
-const urlShortenerService = require('../service/url-shortener');
+import path from 'path';
+import * as urlShortenerService from '../service/url-shortener.js';
 
-const createShortUrl = async (req, res) => {
+export const createShortUrl = async (req, res) => {
   try {
     await urlShortenerService.createShortUrl(req.body.originalUrl);
     res.redirect('/');
@@ -11,7 +10,7 @@ const createShortUrl = async (req, res) => {
   }
 };
 
-const loadShortUrl = async (req, res) => {
+export const loadShortUrl = async (req, res) => {
   try {
     const urlInfo = await urlShortenerService.getUrl(req.params.token);
 
@@ -26,7 +25,7 @@ const loadShortUrl = async (req, res) => {
   }
 };
 
-const getUrls = async (req, res) => {
+export const getUrls = async (req, res) => {
   try {
     const urls = await urlShortenerService.getUrls();
     urls.forEach(
@@ -40,10 +39,4 @@ const getUrls = async (req, res) => {
   } catch (err) {
     console.error(err);
   }
-};
-
-module.exports = {
-  createShortUrl,
-  loadShortUrl,
-  getUrls,
 };
