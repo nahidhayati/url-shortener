@@ -19,7 +19,7 @@ export const loadShortUrl = async (req, res) => {
     }
 
     await urlShortenerService.update(req.params.token, urlInfo.clicks);
-    res.redirect(urlInfo.original_url);
+    res.redirect(urlInfo.originalUrl);
   } catch (err) {
     console.error(err);
   }
@@ -28,11 +28,12 @@ export const loadShortUrl = async (req, res) => {
 export const getUrls = async (req, res) => {
   try {
     const urls = await urlShortenerService.getUrls();
+    console.log(urls)
     urls.forEach(
       (url) =>
-        (url.short_url = `${req.protocol}://${path.join(
+        (url.shortUrl = `${req.protocol}://${path.join(
           req.headers.host,
-          url.short_url
+          url.shortUrl
         )}`)
     );
     res.render('index', { urls: urls });

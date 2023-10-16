@@ -1,4 +1,6 @@
 import dotenv from 'dotenv';
+import camelcaseKeys from 'camelcase-keys';
+import { snakeCase } from 'snake-case';
 
 dotenv.config();
 
@@ -8,6 +10,8 @@ dotenv.config();
 export default {
   development: {
     client: 'postgresql',
+    wrapIdentifier: (value) => snakeCase(value),
+    postProcessResponse: (result) => camelcaseKeys(result),
     connection: {
       database: process.env.DB_NAME,
       user: process.env.DB_USER,

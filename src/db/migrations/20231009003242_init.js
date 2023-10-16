@@ -5,8 +5,8 @@
 exports.up = function (knex) {
   return knex.schema.createTable('url', (table) => {
     table.increments('id');
-    table.string('original_url').notNullable();
-    table.string('short_url').notNullable().unique();
+    table.string('originalUrl').notNullable();
+    table.string('shortUrl').notNullable().unique();
     table.integer('clicks', 0).notNullable();
   });
 };
