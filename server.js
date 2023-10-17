@@ -1,8 +1,6 @@
+import './env.js'
 import express from 'express';
-import dotenv from 'dotenv';
 import router from './src/routes/index.js';
-
-dotenv.config();
 
 const app = express();
 app.set('view engine', 'ejs');

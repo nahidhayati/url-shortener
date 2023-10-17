@@ -7,4 +7,4 @@ router.get('/:token', urlShortenerController.loadShortUrl);
 router.get('/', urlShortenerController.getUrls);
 
 
-export default router
+export default router;

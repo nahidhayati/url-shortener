@@ -1,19 +1,19 @@
 import db from '../db/db.js';
 
-export const createShortUrl = (originalUrl, shortUrl, clicks) => {
+export const createShortUrl = (originalUrl, shortUrlToken, clicks) => {
   return db('url').insert({
     originalUrl: originalUrl,
-    shortUrl: shortUrl,
+    shortUrlToken: shortUrlToken,
     clicks: clicks,
   });
 };
 
 export const update = (token, clicks) => {
-  return db('url').where({ shortUrl: token }).update({ clicks: clicks });
+  return db('url').where({ shortUrlToken: token }).update({ clicks: clicks });
 };
 
 export const getUrl = (token) => {
-  return db('url').where({ shortUrl: token }).first();
+  return db('url').where({ shortUrlToken: token }).first();
 };
 
 export const getUrls = () => {

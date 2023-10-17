@@ -1,8 +1,8 @@
-import dotenv from 'dotenv';
+import '../../env.js'
 import camelcaseKeys from 'camelcase-keys';
 import { snakeCase } from 'snake-case';
 
-dotenv.config();
+console.log('knex', performance.now(), process.env.DB_NAME)
 
 /**
  * @type { Object.<string, import("knex").Knex.Config> }

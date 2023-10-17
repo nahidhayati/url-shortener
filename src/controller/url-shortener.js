@@ -33,7 +33,7 @@ export const getUrls = async (req, res) => {
       (url) =>
         (url.shortUrl = `${req.protocol}://${path.join(
           req.headers.host,
-          url.shortUrl
+          url.shortUrlToken
         )}`)
     );
     res.render('index', { urls: urls });
