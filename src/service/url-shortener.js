@@ -1,19 +1,19 @@
-import * as urlShortenerDAO from '../dao/url-shortener.js';
+import * as urlShortenerRepository from '../db/repository/url-shortener.js';
 import shortId from 'shortid';
 
 export const createShortUrl = (originalUrl) => {
-  return urlShortenerDAO.createShortUrl(originalUrl, shortId.generate(), 0);
+  return urlShortenerRepository.createShortUrl(originalUrl, shortId.generate(), 0);
 };
 
 export const getUrl = (token) => {
-  return urlShortenerDAO.getUrl(token);
+  return urlShortenerRepository.getUrl(token);
 };
 
 export const update = (token, clicks) => {
-  return urlShortenerDAO.update(token, clicks + 1);
+  return urlShortenerRepository.update(token, clicks + 1);
 };
 
 export const getUrls = () => {
-  return urlShortenerDAO.getUrls();
+  return urlShortenerRepository.getUrls();
 };
 

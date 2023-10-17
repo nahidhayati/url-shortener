@@ -28,7 +28,6 @@ export const loadShortUrl = async (req, res) => {
 export const getUrls = async (req, res) => {
   try {
     const urls = await urlShortenerService.getUrls();
-    console.log(urls)
     urls.forEach(
       (url) =>
         (url.shortUrl = `${req.protocol}://${path.join(
