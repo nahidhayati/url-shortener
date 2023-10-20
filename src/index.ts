@@ -1,15 +1,14 @@
-import './env.js'
+import '../env.js';
 import express from 'express';
-import router from './src/route/url-shortener.js';
-
-const app = express();
-app.set('view engine', 'ejs');
-app.use(express.urlencoded({ extended: false }));
-
-app.use(router);
+import router from './route/url-shortener.js';
 
 const port = process.env.PORT;
+const app = express();
+
+app.set('view engine', 'ejs');
+app.use(express.urlencoded({ extended: false }));
+app.use(router);
 
 app.listen(port, () => {
-  console.log(`Server listening on http://localhost:${port}`);
+  console.log(`Server listening on port: ${port}`);
 });

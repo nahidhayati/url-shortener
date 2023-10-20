@@ -1,16 +1,19 @@
-import path from 'path';
+import { Request, Response } from 'express';
 import * as urlShortenerService from '../service/url-shortener.js';
+import { getShortUrl } from '../utils/url-shortener.js';
 
-export const createShortUrl = async (req, res) => {
+export const createShortUrl = async (req: Request, res: Response) => {
   try {
     await urlShortenerService.createShortUrl(req.body.originalUrl);
+
     res.redirect('/');
   } catch (err) {
     console.error(err);
+    res.sendStatus(500);
   }
 };
 
-export const loadShortUrl = async (req, res) => {
+export const loadShortUrl = async (req: Request, res: Response) => {
   try {
     const urlInfo = await urlShortenerService.getUrl(req.params.token);
 
@@ -19,24 +22,27 @@ export const loadShortUrl = async (req, res) => {
     }
 
     await urlShortenerService.update(req.params.token, urlInfo.clicks);
+
     res.redirect(urlInfo.originalUrl);
   } catch (err) {
     console.error(err);
+    res.sendStatus(500);
   }
 };
 
-export const getUrls = async (req, res) => {
+export const getUrls = async (req: Request, res: Response) => {
   try {
     const urls = await urlShortenerService.getUrls();
-    urls.forEach(
-      (url) =>
-        (url.shortUrl = `${req.protocol}://${path.join(
-          req.headers.host,
-          url.shortUrlToken
-        )}`)
-    );
-    res.render('index', { urls: urls });
+
+    const data = urls.map((url) => ({
+      clicks: url.clicks,
+      originalUrl: url.originalUrl,
+      shortUrl: getShortUrl(req, url),
+    }));
+
+    res.render('index', { urls: data });
   } catch (err) {
     console.error(err);
+    res.sendStatus(500);
   }
 };
