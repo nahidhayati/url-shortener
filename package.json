@@ -5,8 +5,8 @@
   "main": "src/index.ts",
   "type": "module",
   "scripts": {
-    "migrate": "knex migrate:latest --esm --knexfile ./src/db/knexfile.ts",
-    "migrateDown": "knex migrate:down --esm --knexfile ./src/db/knexfile.ts",
+    "migrate": "NODE_OPTIONS='--loader ts-node/esm' knex migrate:latest --knexfile ./src/db/knexfile.ts",
+    "migrateDown": "NODE_OPTIONS='--loader ts-node/esm' knex migrate:down --knexfile ./src/db/knexfile.ts",
     "start": "nodemon --esm src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

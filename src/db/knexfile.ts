@@ -1,17 +1,13 @@
-import '../../env.ts';
+import '../../env.js';
 import camelcaseKeys from 'camelcase-keys';
 import { snakeCase } from 'snake-case';
 import { Knex } from 'knex';
 
-interface KnexConfiguration {
-  [key: string]: Knex.Config;
-}
-
-const configs: KnexConfiguration = {
+const config: { [key: string]: Knex.Config } = {
   development: {
     client: 'postgresql',
-    wrapIdentifier: (value: string) => snakeCase(value),
-    postProcessResponse: (result: any) => camelcaseKeys(result),
+    wrapIdentifier: (value) => snakeCase(value),
+    postProcessResponse: (result) => camelcaseKeys(result),
     connection: {
       database: process.env.DB_NAME,
       user: process.env.DB_USER,
@@ -22,10 +18,9 @@ const configs: KnexConfiguration = {
       max: 10,
     },
     migrations: {
-      //extension: 'ts',
       tableName: 'knex_migrations',
     },
   },
 };
 
-export default configs;
+export default config;
