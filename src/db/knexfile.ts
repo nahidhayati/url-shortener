@@ -9,6 +9,7 @@ const config: { [key: string]: Knex.Config } = {
     wrapIdentifier: (value) => snakeCase(value),
     postProcessResponse: (result) => camelcaseKeys(result),
     connection: {
+      host: 'db',
       database: process.env.DB_NAME,
       user: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
